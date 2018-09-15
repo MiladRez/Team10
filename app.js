@@ -104,7 +104,7 @@ app.post("/signup", function(req, res){
         student_id: req.body.studentnum,
         username: req.body.username});
     
-    if(req.body.admin_password === "teacheraccount"){
+    if(req.body.admin_password === "teacheracc"){
         newStudent.isAdmin = true;
     }
     
