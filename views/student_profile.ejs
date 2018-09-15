@@ -1,0 +1,70 @@
+<% include ./partials/header %>
+  <!--<link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />-->
+</head>
+<body>
+    <h1>Student Profile Page</h1>
+    <center>
+    <table class="ui selectable celled table" id="table_size">
+      <thead>
+        <tr>
+          <th>Profile</th>
+          <th>Student Info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>First Name</td>
+            <td><%= student.first_name %></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><%= student.last_name %></td>
+        </tr>
+        <tr>
+            <td>Student Number</td>
+            <td><%= student.student_id %></td>
+        </tr>
+        <tr>
+            <td>Username</td>
+            <td><%= student.username %></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><%= student.password %></td>
+        </tr>
+        <tr>
+            <td>View Schedule</td>
+            <form action="/schedule/<%= student._id %>" method="get">
+                <td><button name="schedule" class="ui icon button"><i class="table icon"></i></button></td>
+            </form>
+        </tr>
+        <!--<tr>-->
+        <!--  <td>Jamie</td>-->
+        <!--  <td>Approved</td>-->
+        <!--  <td>Requires call</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--  <td>Jill</td>-->
+        <!--  <td>Denied</td>-->
+        <!--  <td>None</td>-->
+        <!--</tr>-->
+        <!--<tr class="warning">-->
+        <!--  <td>John</td>-->
+        <!--  <td>No Action</td>-->
+        <!--  <td>None</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--  <td>Jamie</td>-->
+        <!--  <td class="positive">Approved</td>-->
+        <!--  <td class="warning">Requires call</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--  <td>Jill</td>-->
+        <!--  <td class="negative">Denied</td>-->
+        <!--  <td>None</td>-->
+        <!--</tr>-->
+      </tbody>
+    </table>
+    </center>
+
+<% include ./partials/footer %>

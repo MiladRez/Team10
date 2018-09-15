@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/home.css" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <center>
+        <h1 style="margin-top: 50px">Class List</h1>
+    
+        <table class="ui selectable celled table" id="table_size" style="margin-top: 50px">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Student ID</th>
+                    <th>Schedule</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% students.forEach(function(student){ %>  
+                <tr>
+                    <td><%= student.first_name + " " + student.last_name %></td>
+                    <td><%= student.username %></td>
+                    <td><%= student.student_id %></td>
+                    <form action="/schedule/<%= student._id %>" method="get">
+                        <td><button name="schedule" class="ui icon button"><i class="table icon"></i></button></td>
+                    </form>
+                    <form action="/remove/<%= student._id %>" method="get">
+                        <td><button name="removed" class="ui icon button" id="remove_button"><i class="times icon"></i></button></td>
+                    </form>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </center>
+<% include ./partials/footer %>

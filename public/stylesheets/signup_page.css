@@ -1,0 +1,58 @@
+table {
+	border-collapse: collapse;
+}
+
+#title_strip {
+	margin-left: 20px;
+}
+
+h1 {
+	font-size: 50px;
+	color: white;
+	padding-top: 10px;
+}
+
+form {
+	text-align: center;
+	margin: 0 auto; 
+    width:250px;
+    padding-top: 50px;
+}
+
+input {
+	border-radius: 7px;
+	/*height: 30px;*/
+	font-size: 25px;
+}
+
+#add_student {
+	font-size: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/*height: 50px;*/
+	text-align: center;
+	width: 315px;
+	margin-left: -20px;
+}
+
+body {
+	background-color: #12b2b2;
+	margin-top: 50px;
+}
+
+/*#center_box {*/
+/*	margin-top: 50px;*/
+/*	height: 210px;*/
+/*	width: 280px;*/
+/*	border-bottom-left-radius: 25px;*/
+/*	border-bottom-right-radius: 25px; */
+/*}*/
+
+#space {
+	margin-top: 30px;
+}
+
+#add_student:hover {
+	background-color: #146bcc;
+	color: white;
+}

@@ -1,0 +1,66 @@
+<% include ./partials/header %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/signup_page.css"/>
+    <title>Sign Up</title>
+</head>
+<body>
+    <div id="title_strip">
+    	<center> <a href="/"><h1>Team 10 Schedule</h1></a> </center>
+    </div> 
+    	
+    <form action="/signup" method="post">
+        <div class="ui input focus">
+    		<table>
+    			<tbody>
+        			<tr>
+    					<td><input type="text" name="firstname" placeholder="First name" required></td>
+    				</tr>
+    				<tr>
+    					<td><input type="text" name="lastname" placeholder="Last name" required></td>
+    				</tr>
+    				<tr>
+    					<td><input type="number" name="studentnum" maxlength="6" placeholder="Student #"></td>
+    				</tr>
+    				<tr>
+    					<td><input id="space" type="text" name="username" placeholder="Username"></td>
+    				</tr>
+    				<tr>
+    					<td><input type="password" name="password" placeholder="Password"></td>
+    				</tr>
+    				<tr>
+    				    <td>
+                            <div class="ui toggle checkbox" id="space">
+                                <input id="checked" type="checkbox" name="isAdmin_toggle" onclick="checkbox_check()">
+                                <label>Admin User</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr><td></td></tr><tr><td></td></tr><tr><td></td></tr><tr><td></td></tr>
+                    <tr>
+                        <td>
+                            <div style="display:none" id="admin_pass">
+                            <form>
+                                <input type="password" name="admin_password" placeholder="Admin Passcode">
+                            </form>
+                            </div>
+                        </td>
+    				</tr>
+    				<script>
+            			function checkbox_check() {
+                            var checkBox = document.getElementById("checked");
+                            var text = document.getElementById("admin_pass");
+                            if (checkBox.checked == true){
+                                text.style.display = "block";
+                            } else {
+                               text.style.display = "none";
+                            }
+                        }
+    				</script>
+    				<tr>
+    				    <td><button class="massive ui button" id="add_student" type="submit">Sign up</button></td>
+    				</tr>
+    			</tbody>
+    		</table>
+    	</div>
+    </form>
+    
+<% include ./partials/footer %>

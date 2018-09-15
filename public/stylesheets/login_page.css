@@ -1,0 +1,82 @@
+table {
+	border-collapse: collapse;
+}
+
+h1 {
+	font-size: 50px;
+	padding-top: 10px;
+	margin-left: 190px;
+	color: white;
+}
+
+form {
+	text-align: center;
+}
+
+#main_form{
+    text-align: center;
+	margin: 0 auto; 
+    width:250px;
+    padding-top: 50px;
+}
+
+#sign_up {
+	height: 50px;
+	margin-right: 40px;
+	font-size: 20px;
+}
+
+#sign_up:hover {
+	background-color: #146bcc;
+	color: white;
+}
+
+#login:hover {
+	background-color: green;
+	color: white;
+}
+
+input {
+	border-radius: 7px;
+	/*height: 30px;*/
+	font-size: 25px;
+}
+
+#login {
+	font-size: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	/*height: 50px;*/
+	width: 315px;
+	margin-left: -20px;
+}
+
+body {
+	background-color: #12b2b2;
+	margin-top: 50px;
+}
+
+/*#center_box {*/
+/*	margin-top: 50px;*/
+/*	height: 210px;*/
+/*	width: 325px;*/
+/*	border-bottom-left-radius: 25px;*/
+/*	border-bottom-right-radius: 25px; */
+/*}*/
+
+.float_center {
+  float: right;
+
+  position: relative;
+  left: -50%; /* or right 50% */
+  text-align: left;
+}
+
+a {
+    margin-left: 40px;
+    font-size: 20px;
+}
+
+#forgot_password:hover {
+    text-decoration: underline;
+}

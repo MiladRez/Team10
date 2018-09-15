@@ -1,0 +1,202 @@
+<% include ./partials/header %>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/schedule_page.css" />
+    <script src="/drag_drop.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous">
+    </script>
+    <title>Schedule</title>
+</head>
+
+<body>
+    
+    <div id="title_strip">
+        <center> <h1>Welcome, <%= student.first_name %></h1></center>
+    </div> 
+
+    <form action="/schedule/<%= student._id %>" method="post">
+        <input id="reset" type="button" onclick="history.go(0)" value="Reset Schedule">
+    </form>
+
+    <div>
+        <center>
+            <input  style="margin-left: -200px;" id="files" type="file" multiple/>
+            <output id="result" />
+        </center>
+    </div>
+
+    <form action="/logout" method="get">
+        <button id="logout">Logout</button>
+    </form>
+
+<!--==========================================================================================================================================-->
+<!--START OF SCHEDULE TABLE-->
+
+    <table id="table_1">
+
+        <tr>
+            <th id="period" style="width: 25%"><center>Period</center></th>
+            <th id="subject"><center>Subject</center></th>
+        </tr>
+
+        <tr>
+            <td class="td_1"><center><h2>1</h2></center></td>
+            <td class="td_1">
+                <center>
+                    <div id="period_1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </center>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="td_1"><center><h2>2</h2></center></td>
+            <td class="td_1">
+                <center>
+                    <div id="period_2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </center>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="td_1"><center><h2>Lunch</h2></center></td>
+            <td class="td_1">
+                <center>
+                    <div id="period_3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </center>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="td_1"><center><h2>3</h2></center></td>
+            <td class="td_1">
+                <center>
+                    <div id="period_4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </center>
+            </td>
+        </tr>
+       
+        <tr>
+            <td class="td_1"><center><h2>4</h2></center></td>
+            <td class="td_1">
+                <center>
+                    <div id="period_5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </center>
+            </td>
+        </tr>  
+    </table>
+
+<!--END OF SCHEDULE TABLE-->
+<!--==========================================================================================================================================-->
+<!--START OF GALLERY TABLE-->
+
+    <table id="table_2">
+
+        <tr>
+            <th id="th_gallery"><center><h2>Gallery</h2></center></th>
+        </tr>
+
+        <tr>
+            <td>
+                <div id="outer_div">
+                    <div id="gallery">
+
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="lunch" src="http://i.imgur.com/sgl6xbr.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="120" height="120">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="basketball" src="http://imgur.com/OClOzeH.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="100" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="ketchup" src="http://i.imgur.com/l79KSTQ.gif" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="130" height="110">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="soccer" src="http://i.imgur.com/0ZFSDaa.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="100" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="reading" src="http://i.imgur.com/9X07NhE.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="100" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="math" src="http://i.imgur.com/zGBkZkb.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="120" height="120">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="science" src="http://i.imgur.com/qsCfFCL.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="90" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="movie" src="http://i.imgur.com/61dfJUe.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="120" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="football" src="http://i.imgur.com/m6LV2vM.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="100" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)"> 
+                          <img id="music" src="http://i.imgur.com/BxhtW3F.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="120" height="120">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="drama" src="http://i.imgur.com/wiR7viB.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="150" height="120">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="party" src="http://i.imgur.com/iujZYTg.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="150" height="100">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="homework" src="http://i.imgur.com/gGHl0nD.png" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="110" height="110">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="presentation" src="http://i.imgur.com/XE94d5m.png?1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="110" height="110">
+                        </div>
+            
+                        <div id="placeholder_gallery" ondrop="drop(event)" ondragover="allowDrop(event)">
+                          <img id="computer" src="http://i.imgur.com/lSQCkpo.png?1" ondrop="drop(event)" ondragover="allowDrop(event)" draggable="true"
+                          ondragstart="drag(event)" width="110" height="110">
+                        </div>                    
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+<!--END OF GALLERY TABLE-->        
+<!--==========================================================================================================================================-->
+<!--START OF FINISHED BOX-->
+
+    <table>
+        <tr>
+            <td>  
+                <div id="finished_box">
+
+                    <div id="placeholder_finished" ondrop="removeElement(event)" ondragover="allowDrop(event)">
+                      <img id="checkbox" src="http://www.freeiconspng.com/uploads/checkmark-symbol-png-background-12.png" draggable="false"
+                      ondragstart="drag(event)" width="100" height="100">
+                    </div>
+                </div>
+            </td>
+            <td><center><h1>Finished!</h1></center></td>
+        </tr>
+    </table>
+
+<% include ./partials/footer %>

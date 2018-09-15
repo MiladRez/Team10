@@ -1,0 +1,15 @@
+body{
+    background-color: #12b2b2;
+    margin-top: 50px;
+}
+
+h1 {
+	font-size: 50px;
+	padding-top: 10px;
+	color: white;
+}
+
+button {
+    margin-top: 20px !important;
+    color: white;
+}
