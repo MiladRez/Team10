@@ -23,17 +23,6 @@ passport.use(new LocalStrategy(Student.authenticate()));
 passport.serializeUser(Student.serializeUser());
 passport.deserializeUser(Student.deserializeUser());
 
-//moved to USER.JS file
-// var studentSchema = new mongoose.Schema({
-//     first_name: String,
-//     last_name: String,
-//     student_id: Number,
-//     username: String,
-//     password: String
-// });
-
-// var Student = mongoose.model("Student", studentSchema);
-
 app.get("/", function(req, res) {
     res.render("index");
 });
@@ -69,34 +58,11 @@ app.get("/logout", function(req, res){
     res.redirect("/login");
 });
 
-//WORKS
-// app.post("/student_login", function(req, res) {
-//     var studentUsername = req.body.username;
-//     var studentPassword = req.body.password;
-    
-//     Student.findOne({username: studentUsername, password: studentPassword}, function(err, foundStudent) {
-//         if (err){
-//             console.log("Error!");
-//         } else {
-//             console.log("=======================");
-//             console.log(foundStudent.first_name + " " + foundStudent.last_name + " logged in.");
-//             console.log("=======================");
-//             res.redirect("/schedule/" + foundStudent._id);
-//         }
-//     });
-// });
-
 app.get("/signup", function(req, res) {
     res.render("signup");
 });
 
 app.post("/signup", function(req, res){
-    // var studentFirstName = req.body.firstname;
-    // var studentLastName = req.body.lastname;
-    // var studentNumber = req.body.studentnum;
-    // var studentUsername = req.body.username;
-    // var studentPassword = req.body.password;
-    // var adminPassword = req.body.admin_password;
     
     var newStudent = new Student({
         first_name: req.body.firstname,
@@ -128,34 +94,6 @@ app.post("/signup", function(req, res){
     });
 });
 
-//WORKS
-// app.post("/add_student", function(req, res) {
-//     var studentFirstName = req.body.firstname;
-//     var studentLastName = req.body.lastname;
-//     var studentNumber = req.body.studentnum;
-    
-//     var studentUsername = req.body.username;
-//     var studentPassword = req.body.password;
-    
-//     Student.create({
-//         first_name: studentFirstName,
-//         last_name: studentLastName,
-//         student_id: studentNumber,
-//         username: studentUsername,
-//         password: studentPassword
-//     }, function(err, student){
-//         if(err){
-//             console.log("ERROR!");
-//         } else {
-//             console.log("=======================");
-//             console.log("Added Student");
-//             console.log("=======================");
-//             console.log(student);
-//         }
-//     });
-//     res.redirect("/home");
-// });
-
 app.get("/schedule/:id", function(req, res){
     Student.findById(req.params.id, function(err, foundStudent){
         if (err){
@@ -165,19 +103,6 @@ app.get("/schedule/:id", function(req, res){
         }
     });
 });
-
-//DOESNT QUITE WORK
-// app.get("/schedule/:username", function(req, res){
-//     var student_username = req.body.username;
-    
-//     Student.find({username: student_username}, function(err, foundStudent){
-//         if(err){
-//             console.log("Error!");
-//         } else {
-//             res.render("schedule", {student: foundStudent});
-//         }
-//     });
-// });
 
 app.get("/remove/:id", function(req, res){
     var student_id = req.params.id;
