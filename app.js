@@ -6,13 +6,15 @@ var express               = require("express"),
     Student               = require("./models/user"),
     LocalStrategy         = require("passport-local");
 
-mongoose.connect('mongodb://localhost:27017/team10_app', { useNewUrlParser: true }); 
+require("dotenv").config()
+
+mongoose.connect('mongodb://localhost:27017/team10_app', { useNewUrlParser: true, useUnifiedTopology: true }); 
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(require("express-session")({
-    secret: "real madrid",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -23,18 +25,18 @@ passport.use(new LocalStrategy(Student.authenticate()));
 passport.serializeUser(Student.serializeUser());
 passport.deserializeUser(Student.deserializeUser());
 
-app.get("/", function(req, res) {
+app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get("/login", function(req, res) {
+app.get("/login", isNotLoggedIn, (req, res) => {
     res.render("login");
 });
 
-app.post("/login", passport.authenticate("local", {failureRedirect: "/login"}), function(req, res){
+app.post("/login", isNotLoggedIn, passport.authenticate("local", {failureRedirect: "/login"}), (req, res) => {
     var studentUsername = req.body.username;
     
-    Student.findOne({username: studentUsername}, function(err, foundStudent) {
+    Student.findOne({username: studentUsername}, (err, foundStudent) => {
         if(foundStudent.isAdmin){
             res.redirect("/home");
         } else {
@@ -50,7 +52,7 @@ app.post("/login", passport.authenticate("local", {failureRedirect: "/login"}), 
     });
 });
 
-app.get("/logout", function(req, res){
+app.get("/logout", (req, res) => {
     req.logout();
     console.log("=======================");
     console.log("Student has logged out.");
@@ -58,11 +60,11 @@ app.get("/logout", function(req, res){
     res.redirect("/login");
 });
 
-app.get("/signup", function(req, res) {
+app.get("/signup", isNotLoggedIn, (req, res) => {
     res.render("signup");
 });
 
-app.post("/signup", function(req, res){
+app.post("/signup", isNotLoggedIn, (req, res) => {
     
     var newStudent = new Student({
         first_name: req.body.firstname,
@@ -70,32 +72,26 @@ app.post("/signup", function(req, res){
         student_id: req.body.studentnum,
         username: req.body.username});
     
-    if(req.body.admin_password === "teacheracc"){
+    if(req.body.admin_password === process.env.ADMIN_PASSWORD){
         newStudent.isAdmin = true;
     }
     
-    Student.register(newStudent, req.body.password, function(err, user){
+    Student.register(newStudent, req.body.password, (err, user) => {
         if (err){
             console.log(err);
             return res.render("signup");
         }
-        passport.authenticate("local")(req, res, function(){
-            console.log("=======================");
-            console.log("Added Student");
-            console.log("=======================");
-            console.log(user);
-            if (user.isAdmin){
-                res.redirect("/home");
-            } else {
-                res.redirect("/");
-            }
-            
-        });
+        
+        console.log("=======================");
+        console.log("Added Student");
+        console.log("=======================");
+        console.log(user);
+        res.redirect("/login")            
     });
 });
 
-app.get("/schedule/:id", function(req, res){
-    Student.findById(req.params.id, function(err, foundStudent){
+app.get("/schedule/:id", isLoggedIn, (req, res) => {
+    Student.findById(req.params.id, (err, foundStudent) => {
         if (err){
             console.log("ERROR!");
         } else {
@@ -104,9 +100,9 @@ app.get("/schedule/:id", function(req, res){
     });
 });
 
-app.get("/remove/:id", function(req, res){
+app.get("/remove/:id", isLoggedIn, (req, res) => {
     var student_id = req.params.id;
-    Student.remove({_id: student_id}, function(err, removedStudent){
+    Student.remove({_id: student_id}, (err, removedStudent) => {
         if (err){
             console.log("ERROR!");
         } else {
@@ -119,8 +115,8 @@ app.get("/remove/:id", function(req, res){
     });
 });
 
-app.get("/home", function(req, res) {
-    Student.find({}, function(err, students){
+app.get("/home", isLoggedIn, (req, res) => {
+    Student.find({}, (err, students) => {
         if (err){
             console.log("ERROR");
         } else {
@@ -129,7 +125,7 @@ app.get("/home", function(req, res) {
     });
 });
 
-app.get("*", function(req, res) {
+app.get("*", (req, res) => {
     res.send("ERROR 404!");
 });
 
@@ -140,14 +136,14 @@ function isLoggedIn(req, res, next){
     res.redirect("/login");
 }
 
-// function isAdmin(req, res, next){
-//     if (req.body.isAdmin) {
-//         res.redirect("/home");
-//     } else {
-//         res.redirect("/");
-//     }
-// }
+function isNotLoggedIn(req, res, next) {
+    if (req. isAuthenticated()) {
+        req.logout()
+        return res.redirect("/")
+    }
+    next()
+}
 
-app.listen(process.env.PORT, process.env.IP, function () {
+app.listen(process.env.PORT || 3000, process.env.IP, function () {
     console.log("The Team 10 server has started!");
 });
